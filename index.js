@@ -12,6 +12,10 @@ module.exports = (app) => {
     //const params = context.issue({body: JSON.stringify(context)})
 
     // Post a comment on the issue
-    return context.github.issues.createComment(params)
+    context.github.issues.createComment(params);
+    
+    let labelsToAdd = [];
+    labelsToAdd.push("awesome");
+    return context.github.issues.addLabels(context.issue({ labels: labelsToAdd }))
   })
 }
