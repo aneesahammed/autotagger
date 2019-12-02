@@ -4,8 +4,8 @@
   "//3": "updating this file will download and update your packages",
   "name": "curlbot",
   "version": "1.0.0",
-  "description": "Awesome github bot",
-  "author": "aneesahammed <aneesahamm@gmail.com>",
+  "description": "Awesome github bot to auto tag your issues",
+  "author": "aneesahammed <aneesahammed@gmail.com>",
   "license": "ISC",
   "repository": "https://github.com/probot/hello-world.git",
   "scripts": {

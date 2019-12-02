@@ -1,19 +1,28 @@
 module.exports = app => {
-  app.log("Yay! The app was loaded!");
+  app.log("The app was loaded!");
+  
+  //  app.on(`*`, async context => {
+  //   context.log({ event: context.event, action: context.payload })
+  // })
 
-  app.on("issues.opened", async context => {
+  app.on(['issues.opened', 'issues.edited'], async context => {
     let labelsToAdd = [];
 
-    let matches = context.payload.issue.title.match(/\[(.*?)\]/g);
+    const title = context.payload.issue.title;
+    app.log("Title: ", title);
+    
+    let matches = title.match(/\[(.*?)\]/g);
     matches.forEach(match => {
       let tag = match.substring(
         match.lastIndexOf("[") + 1,
         match.lastIndexOf("]")
       );
+      
       labelsToAdd.push({ name: tag, color: "005668" });
     });
 
-    return context.github.issues.addLabels(
+    
+    return context.github.issues.addLabels(      
       context.issue({ labels: labelsToAdd })
     );
   });
